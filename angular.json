@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "projects": {
+    "smite-stats": {
+      "projectType": "application",
+      "root": "apps/smite-stats",
+      "sourceRoot": "apps/smite-stats/src",
+      "prefix": "smitestats",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/smite-stats",
+            "index": "apps/smite-stats/src/index.html",
+            "main": "apps/smite-stats/src/main.ts",
+            "polyfills": "apps/smite-stats/src/polyfills.ts",
+            "tsConfig": "apps/smite-stats/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/smite-stats/src/favicon.ico",
+              "apps/smite-stats/src/assets"
+            ],
+            "styles": ["apps/smite-stats/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/smite-stats/src/environments/environment.ts",
+                  "with": "apps/smite-stats/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "smite-stats:build:production"
+            },
+            "development": {
+              "browserTarget": "smite-stats:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "smite-stats:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/smite-stats/src/**/*.ts",
+              "apps/smite-stats/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/smite-stats"],
+          "options": {
+            "jestConfig": "apps/smite-stats/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "smite-stats-e2e": {
+      "root": "apps/smite-stats-e2e",
+      "sourceRoot": "apps/smite-stats-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/smite-stats-e2e/cypress.json",
+            "tsConfig": "apps/smite-stats-e2e/tsconfig.e2e.json",
+            "devServerTarget": "smite-stats:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "smite-stats:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/smite-stats-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "smite-stats"
+}
