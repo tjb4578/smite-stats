@@ -12,9 +12,12 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MDA4Y2Q5N2EtMzg2Yi00YjBlLWE4YzItOTdkMzk5ODFmOGJifHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -27,6 +30,13 @@
     ]
   },
   "projects": {
+    "dashboard": {
+      "tags": ["ui"]
+    },
+    "dashboard-e2e": {
+      "tags": [],
+      "implicitDependencies": ["dashboard"]
+    },
     "smite-stats": {
       "tags": []
     },
