@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@smitestats/dashboard": ["libs/dashboard/src/index.ts"]
+      "@smitestats/dashboard": ["libs/dashboard/src/index.ts"],
+      "@smitestats/header": ["libs/header/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -15,5 +15,9 @@ export const dashboardRoutes: Route[] = [
     DashboardViewComponent,
     DashboardCardComponent
   ],
+  exports: [
+    DashboardViewComponent,
+    DashboardCardComponent
+  ]
 })
 export class DashboardModule {}

@@ -3,10 +3,12 @@
    */
 :host {
   display: block;
-  font-family: sans-serif;
-  min-width: 900px;
-  max-width: 1200px;
-  margin: 50px auto;
+  min-width: 20rem;
+  background-color: #BDC5D0;
+}
+
+.fullscreen {
+  width: 100%;
 }
 
 .gutter-left {

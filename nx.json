@@ -33,9 +33,8 @@
     "dashboard": {
       "tags": ["ui"]
     },
-    "dashboard-e2e": {
-      "tags": [],
-      "implicitDependencies": ["dashboard"]
+    "header": {
+      "tags": []
     },
     "smite-stats": {
       "tags": []
