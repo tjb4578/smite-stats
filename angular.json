@@ -26,6 +26,31 @@
         }
       }
     },
+    "gods": {
+      "projectType": "library",
+      "root": "libs/gods",
+      "sourceRoot": "libs/gods/src",
+      "prefix": "smitestats",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/gods"],
+          "options": {
+            "jestConfig": "libs/gods/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/gods/src/**/*.ts",
+              "libs/gods/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "header": {
       "projectType": "library",
       "root": "libs/header",

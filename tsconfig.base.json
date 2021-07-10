@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@smitestats/dashboard": ["libs/dashboard/src/index.ts"],
+      "@smitestats/gods": ["libs/gods/src/index.ts"],
       "@smitestats/header": ["libs/header/src/index.ts"]
     }
   },
