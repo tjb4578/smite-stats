@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GodsService } from '../services/gods.service';
 
 @Component({
   selector: 'smitestats-gods-view',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GodsViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: GodsService) { }
 
   ngOnInit(): void {
   }
 
+  callService() {
+    this.service.getGods();
+  }
 }
