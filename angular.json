@@ -142,7 +142,8 @@
               "browserTarget": "smite-stats:build:production"
             },
             "development": {
-              "browserTarget": "smite-stats:build:development"
+              "browserTarget": "smite-stats:build:development",
+              "proxyConfig": "apps/smite-stats/src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

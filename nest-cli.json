@@ -1,0 +1,29 @@
+{
+  "monorepo": true,
+  "root": "apps/smitestats",
+  "sourceRoot": "apps/smitestats/src",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/smitestats/tsconfig.app.json"
+  },
+  "projects": {
+    "smitestats": {
+      "type": "application",
+      "root": "apps/smitestats",
+      "entryFile": "main",
+      "sourceRoot": "apps/smitestats/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/smitestats/tsconfig.app.json"
+      }
+    },
+    "smite-api": {
+      "type": "application",
+      "root": "apps/smite-api",
+      "entryFile": "main",
+      "sourceRoot": "apps/smite-api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/smite-api/tsconfig.app.json"
+      }
+    }
+  }
+}
