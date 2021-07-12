@@ -16,4 +16,16 @@ export class GodsViewComponent implements OnInit {
   callService() {
     this.service.getGods();
   }
+
+  pingService() {
+    this.service.ping();
+  }
+
+  testService() {
+    this.service.testSession();
+  }
+
+  testSample() {
+    this.service.testSample();
+  }
 }

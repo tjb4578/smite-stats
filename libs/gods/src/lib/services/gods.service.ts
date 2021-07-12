@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SmiteService } from '../../../../../apps/smite-stats/src/app/smite.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GodsService {
 
-  constructor(private http: HttpClient, private smiteService: SmiteService) { }
+  constructor(private http: HttpClient) { }
 
   getGods() {
-    this.http.get('')
+    return this.http.get('/api/gods?languageCode=1').subscribe((res: any) => res.subscribe((uh: any) => console.log(uh)));
+  }
+
+  ping() {
+    return this.http.get('/api/').subscribe((res: any) => console.log(res.msg));
+  }
+
+  testSession() {
+    return this.http.get('/api/test').subscribe((res: any) => console.log(res));
+  }
+
+  testSample() {
+    return this.http.get('/api/sample').subscribe((res: any) => console.log(res));
   }
 }

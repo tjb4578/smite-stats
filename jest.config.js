@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/dashboard',
     '<rootDir>/libs/header',
     '<rootDir>/libs/gods',
+    '<rootDir>/apps/smite-api',
   ],
 };

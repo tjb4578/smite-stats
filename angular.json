@@ -9,7 +9,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dashboard"],
+          "outputs": [
+            "coverage/libs/dashboard"
+          ],
           "options": {
             "jestConfig": "libs/dashboard/jest.config.js",
             "passWithNoTests": true
@@ -34,7 +36,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/gods"],
+          "outputs": [
+            "coverage/libs/gods"
+          ],
           "options": {
             "jestConfig": "libs/gods/jest.config.js",
             "passWithNoTests": true
@@ -59,7 +63,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/header"],
+          "outputs": [
+            "coverage/libs/header"
+          ],
           "options": {
             "jestConfig": "libs/header/jest.config.js",
             "passWithNoTests": true
@@ -76,6 +82,64 @@
         }
       }
     },
+    "smite-api": {
+      "root": "apps/smite-api",
+      "sourceRoot": "apps/smite-api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/smite-api",
+            "main": "apps/smite-api/src/main.ts",
+            "tsConfig": "apps/smite-api/tsconfig.app.json",
+            "assets": [
+              "apps/smite-api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/smite-api/src/environments/environment.ts",
+                  "with": "apps/smite-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "smite-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/smite-api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/smite-api"
+          ],
+          "options": {
+            "jestConfig": "apps/smite-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "smite-stats": {
       "projectType": "application",
       "root": "apps/smite-stats",
@@ -84,7 +148,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/smite-stats",
             "index": "apps/smite-stats/src/index.html",
@@ -142,11 +208,13 @@
               "browserTarget": "smite-stats:build:production"
             },
             "development": {
-              "browserTarget": "smite-stats:build:development",
-              "proxyConfig": "apps/smite-stats/src/proxy.conf.json"
+              "browserTarget": "smite-stats:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/smite-stats/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -165,7 +233,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/smite-stats"],
+          "outputs": [
+            "coverage/apps/smite-stats"
+          ],
           "options": {
             "jestConfig": "apps/smite-stats/jest.config.js",
             "passWithNoTests": true
@@ -194,7 +264,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/smite-stats-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/smite-stats-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
