@@ -26,7 +26,7 @@ export const initialState: State = godsAdapter.getInitialState({
 
 const godsReducer = createReducer(
   initialState,
-  on(GodsActions.init, (state) => ({ ...state, loaded: false, error: null })),
+  on(GodsActions.loadGods, (state) => ({ ...state, loaded: false, error: null })),
   on(GodsActions.loadGodsSuccess, (state, { gods }) =>
     godsAdapter.setAll(gods, { ...state, loaded: true })
   ),

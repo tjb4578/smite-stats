@@ -3,5 +3,6 @@
  */
 export interface GodsEntity {
   id: string | number; // Primary ID
-  name: string;
+  Name: string;
+  godIcon_URL: string;
 }

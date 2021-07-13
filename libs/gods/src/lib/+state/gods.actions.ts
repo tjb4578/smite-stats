@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { GodsEntity } from './gods.models';
 
-export const init = createAction('[Gods Page] Init');
+export const loadGods = createAction('[Gods Page] Load Gods');
 
 export const loadGodsSuccess = createAction(
   '[Gods/API] Load Gods Success',

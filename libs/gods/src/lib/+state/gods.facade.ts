@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import * as GodsActions from './gods.actions';
 import * as GodsFeature from './gods.reducer';
@@ -21,7 +21,7 @@ export class GodsFacade {
    * Use the initialization action to perform one
    * or more tasks in your Effects.
    */
-  init() {
-    this.store.dispatch(GodsActions.init());
+  loadGods() {
+    this.store.dispatch(GodsActions.loadGods());
   }
 }

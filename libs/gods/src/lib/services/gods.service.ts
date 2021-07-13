@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GodsEntity } from '../+state/gods.models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,8 @@ export class GodsService {
 
   constructor(private http: HttpClient) { }
 
-  getGods() {
-    return this.http.get('/api/gods?languageCode=1').subscribe((res: any) => res.subscribe((uh: any) => console.log(uh)));
+  getGods(): Observable<GodsEntity[]> {
+    return this.http.get<GodsEntity[]>('/api/gods?languageCode=1');
   }
 
   ping() {

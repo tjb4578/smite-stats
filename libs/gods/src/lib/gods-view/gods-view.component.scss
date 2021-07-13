@@ -1,0 +1,17 @@
+.god-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+}
+
+.god-icon {
+  width: 128px;
+  height: 128px;
+}
+
+.god-card {
+  padding-right: .5rem;
+}

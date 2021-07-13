@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GodsService } from '../services/gods.service';
+import { Observable } from 'rxjs';
+import { GodsFacade } from '../+state/gods.facade';
+import { GodsEntity } from '../+state/gods.models';
 
 @Component({
   selector: 'smitestats-gods-view',
@@ -7,25 +9,13 @@ import { GodsService } from '../services/gods.service';
   styleUrls: ['./gods-view.component.scss']
 })
 export class GodsViewComponent implements OnInit {
+  gods$: Observable<GodsEntity[]>;
 
-  constructor(private service: GodsService) { }
+  constructor(private readonly godsFacade: GodsFacade) {
+    this.gods$ = this.godsFacade.allGods$;
+   }
 
   ngOnInit(): void {
-  }
-
-  callService() {
-    this.service.getGods();
-  }
-
-  pingService() {
-    this.service.ping();
-  }
-
-  testService() {
-    this.service.testSession();
-  }
-
-  testSample() {
-    this.service.testSample();
+    this.godsFacade.loadGods();
   }
 }

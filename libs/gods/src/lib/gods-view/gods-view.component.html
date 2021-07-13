@@ -1,5 +1,6 @@
-<p>gods-view works!</p>
-<button (click)="callService()">Click me</button>
-<button (click)="pingService()">Ping!</button>
-<button (click)="testService()">Test!</button>
-<button (click)="testSample()">Sample!</button>
+<div class="god-grid">
+  <div *ngFor="let god of gods$ | async" class="god-card">
+    <img [src]="god.godIcon_URL" class="god-icon">
+    <div>{{god.Name}}</div>
+  </div>
+</div>
