@@ -5,10 +5,13 @@ import * as GodsSelectors from './gods.selectors';
 describe('Gods Selectors', () => {
   const ERROR_MSG = 'No Error Available';
   const getGodsId = (it: GodsEntity) => it.id;
-  const createGodsEntity = (id: string, name = '') =>
+  const createGodsEntity = (id: string, name = '', iconUrl = '', cardUrl = '', latestGod = '') =>
     ({
       id,
-      name: name || `name-${id}`,
+      Name: name || `name-${id}`,
+      godIcon_URL: iconUrl,
+      godCard_URL: cardUrl,
+      latestGod: latestGod
     } as GodsEntity);
 
   let state: GodsPartialState;
@@ -17,13 +20,14 @@ describe('Gods Selectors', () => {
     state = {
       gods: godsAdapter.setAll(
         [
-          createGodsEntity('PRODUCT-AAA'),
-          createGodsEntity('PRODUCT-BBB'),
-          createGodsEntity('PRODUCT-CCC'),
+          createGodsEntity('AAA'),
+          createGodsEntity('BBB'),
+          createGodsEntity('CCC'),
+          createGodsEntity('DDD', '', '', '', 'y')
         ],
         {
           ...initialState,
-          selectedId: 'PRODUCT-BBB',
+          selectedId: 'BBB',
           error: ERROR_MSG,
           loaded: true,
         }
@@ -37,14 +41,14 @@ describe('Gods Selectors', () => {
       const selId = getGodsId(results[1]);
 
       expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('BBB');
     });
 
     it('getSelected() should return the selected Entity', () => {
       const result = GodsSelectors.getSelected(state) as GodsEntity;
       const selId = getGodsId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('BBB');
     });
 
     it('getGodsLoaded() should return the current "loaded" status', () => {
@@ -57,6 +61,12 @@ describe('Gods Selectors', () => {
       const result = GodsSelectors.getGodsError(state);
 
       expect(result).toBe(ERROR_MSG);
+    });
+
+    it('getLatestGod() should return the god with latest set to (y)', () => {
+      const result = GodsSelectors.getLatestGod(state);
+
+      expect(result?.id).toBe('DDD');
     });
   });
 });

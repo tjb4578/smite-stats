@@ -8,6 +8,7 @@ import * as fromGods from './+state/gods.reducer';
 import { GodsEffects } from './+state/gods.effects';
 import { GodsFacade } from './+state/gods.facade';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderModule } from '@smitestats/header';
 
 export const godsRoutes: Route[] = [{ path: '', component: GodsViewComponent }];
 
@@ -16,6 +17,7 @@ export const godsRoutes: Route[] = [{ path: '', component: GodsViewComponent }];
     CommonModule,
     RouterModule,
     HttpClientModule,
+    HeaderModule,
     StoreModule.forFeature(fromGods.GODS_FEATURE_KEY, fromGods.reducer),
     EffectsModule.forFeature([GodsEffects]),
   ],

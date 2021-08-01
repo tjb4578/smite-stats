@@ -1,3 +1,4 @@
+<smitestats-page-title pageTitle="Gods" [imageUrl]="(latestGod$ | async)?.godCard_URL!"></smitestats-page-title>
 <div class="god-grid">
   <div *ngFor="let god of gods$ | async" class="god-card">
     <img [src]="god.godIcon_URL" class="god-icon">

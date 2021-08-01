@@ -5,10 +5,14 @@ import { GodsEntity } from './gods.models';
 import { State, initialState, reducer } from './gods.reducer';
 
 describe('Gods Reducer', () => {
-  const createGodsEntity = (id: string, name = ''): GodsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createGodsEntity = (id: string, name = '', iconUrl = '', cardUrl = '', latestGod = '') =>
+    ({
+      id,
+      Name: name || `name-${id}`,
+      godIcon_URL: iconUrl,
+      godCard_URL: cardUrl,
+      latestGod: latestGod
+    } as GodsEntity);
 
   describe('valid Gods actions', () => {
     it('loadGodsSuccess should return the list of known Gods', () => {

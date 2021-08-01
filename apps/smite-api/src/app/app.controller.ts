@@ -6,9 +6,19 @@ export class SmiteApiController {
   constructor(private readonly smiteApiService: SmiteApiService) {}
 
   @Get('gods')
-  getGods(@Query('languageCode') lang: string) {
+  getAllGods(@Query('languageCode') lang: string) {
     console.log('[SmiteApiController] Received request for getGods with lang: ' + lang);
     return this.smiteApiService.getGods(lang);
+  }
+
+  @Get('matches')
+  getAllMatches() {
+    return this.smiteApiService.getMatches();
+  }
+
+  @Get('matchIds')
+  getMatchIds() {
+    return this.smiteApiService.getMatchId();
   }
 
   @Get()
@@ -21,5 +31,11 @@ export class SmiteApiController {
   testSession() {
     console.log('[SmiteApiController] Test session')
     return this.smiteApiService.testSession();
+  }
+
+  @Get('dataUsage')
+  getDataUsed() {
+    console.log('[SmiteApiController] Data Usage');
+    return this.smiteApiService.dataUsed();
   }
 }

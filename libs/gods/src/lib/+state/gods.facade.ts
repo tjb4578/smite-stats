@@ -14,6 +14,7 @@ export class GodsFacade {
   loaded$ = this.store.pipe(select(GodsSelectors.getGodsLoaded));
   allGods$ = this.store.pipe(select(GodsSelectors.getAllGods));
   selectedGods$ = this.store.pipe(select(GodsSelectors.getSelected));
+  latestGod$ = this.store.pipe(select(GodsSelectors.getLatestGod));
 
   constructor(private readonly store: Store) {}
 

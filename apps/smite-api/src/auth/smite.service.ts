@@ -82,42 +82,10 @@ export class SmiteService {
                 this.getTimeStamp();
       })
     );
-    // this.getSession().subscribe(sessionId => {
-    //   console.log(`[SmiteService] Building URL with sessionId: {${sessionId}}`)
-    //   urlSubject.next(
-    //     this.prefix + 
-    //        methodName + 
-    //        'json/' + 
-    //        KEYS.devId + 
-    //        '/' + 
-    //        this.generateSignature(methodName) + 
-    //        '/' + 
-    //        sessionId +
-    //        '/' +
-    //        this.getTimeStamp()
-    //   )
-    // });
-    // console.log(`[SMITESERVICE] returning urlsubject`)
-    // //return urlSubject.asObservable();
-    // //TODO: THERE IS AN ISSUE WITH THE ASYNCHRONOUS SESSIONID subject.
-
-    // //When this is returned with a valid session id, the data is returned.
-    // //When the urlSubject above is returned instead, the request stalls
-    // return of(
-    //   this.prefix + 
-    //        methodName + 
-    //        'json/' + 
-    //        KEYS.devId + 
-    //        '/' + 
-    //        this.generateSignature(methodName) + 
-    //        '/' + 
-    //        'EACF6B45F1154DCB8F861343DC945CD3' +
-    //        '/' +
-    //        this.getTimeStamp()
-    // )
   }
 
   private getTimeStamp() {
+    console.log('[SmiteService] getting timestamp')
     return moment().utc().format('yyyyMMDDHHmmss');
   }
 

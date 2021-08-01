@@ -28,13 +28,13 @@ describe('GodsEffects', () => {
 
   describe('init$', () => {
     it('should work', () => {
-      actions = hot('-a-|', { a: GodsActions.init() });
+      actions = hot('-a-|', { a: GodsActions.loadGods() });
 
       const expected = hot('-a-|', {
         a: GodsActions.loadGodsSuccess({ gods: [] }),
       });
 
-      expect(effects.init$).toBeObservable(expected);
+      expect(effects.loadGods$).toBeObservable(expected);
     });
   });
 });

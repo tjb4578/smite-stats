@@ -19,10 +19,14 @@ interface TestSchema {
 describe('GodsFacade', () => {
   let facade: GodsFacade;
   let store: Store<TestSchema>;
-  const createGodsEntity = (id: string, name = ''): GodsEntity => ({
-    id,
-    name: name || `name-${id}`,
-  });
+  const createGodsEntity = (id: string, name = '', iconUrl = '', cardUrl = '', latestGod = '') =>
+    ({
+      id,
+      Name: name || `name-${id}`,
+      godIcon_URL: iconUrl,
+      godCard_URL: cardUrl,
+      latestGod: latestGod
+    } as GodsEntity);
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -61,7 +65,7 @@ describe('GodsFacade', () => {
         expect(list.length).toBe(0);
         expect(isLoaded).toBe(false);
 
-        facade.init();
+        facade.loadGods();
 
         list = await readFirst(facade.allGods$);
         isLoaded = await readFirst(facade.loaded$);

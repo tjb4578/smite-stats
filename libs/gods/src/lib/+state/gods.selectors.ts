@@ -24,6 +24,8 @@ export const getGodsEntities = createSelector(getGodsState, (state: State) =>
   selectEntities(state)
 );
 
+export const getLatestGod = createSelector(getAllGods, (gods) => gods.find(god => god.latestGod === 'y'));
+
 export const getSelectedId = createSelector(
   getGodsState,
   (state: State) => state.selectedId
