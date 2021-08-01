@@ -27,20 +27,6 @@ describe('SmiteApiService', () => {
 
   describe('when getGods is called', () => {
     it('should return god data on successful request', (done) => {
-      const response = {data: [{god: 'Anhur'}]} as AxiosResponse;
-      jest.spyOn(httpService, 'get').mockReturnValue(of(response));
-      jest.spyOn(smiteService, 'buildUrl').mockReturnValue(of('url'));
-      service.getGods('1').subscribe(
-        res => {
-          expect(res).toEqual(response.data);
-          done();
-        }
-      );
-    });
-  });
-
-  describe('when getGods is called', () => {
-    it('should return god data on successful request', (done) => {
       const response = {data: 'Success'} as AxiosResponse;
       jest.spyOn(httpService, 'get').mockReturnValue(of(response));
       jest.spyOn(smiteService, 'buildUrl').mockReturnValue(of('url'));

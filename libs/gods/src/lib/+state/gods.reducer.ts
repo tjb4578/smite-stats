@@ -17,7 +17,9 @@ export interface GodsPartialState {
 }
 
 export const godsAdapter: EntityAdapter<GodsEntity> =
-  createEntityAdapter<GodsEntity>();
+  createEntityAdapter<GodsEntity>({
+    selectId: GodsEntity => GodsEntity.godId
+  });
 
 export const initialState: State = godsAdapter.getInitialState({
   // set initial required properties

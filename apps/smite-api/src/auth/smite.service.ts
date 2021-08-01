@@ -12,6 +12,10 @@ interface SessionInfo {
   timestamp: string
 }
 
+/**
+ * This service is responsible for creating sessions with the SMITE API, and also provides helpers for building the URL and getting the timestamp
+ */
+
 @Injectable({providedIn: 'root'})
 export class SmiteService {
   private session: SessionInfo = {
@@ -30,33 +34,34 @@ export class SmiteService {
   }
 
   getSession() {
-    if (!this.isValidSession()) {
-      // Generate a new session
-      console.log(`[SmiteService] No valid sessionId found.  Generating new one`)
-      const methodName = 'createsession'
-      const url = this.prefix + 
-                  methodName + 
-                  'Json/' + 
-                  KEYS.devId + 
-                  '/' + 
-                  this.generateSignature(methodName) + 
-                  '/' +
-                  this.getTimeStamp();
-
-      console.log(`[SmiteService] Session request to ${url}`)
-
-      return this.http.get<SessionInfo>(url).pipe(map(
-        res => { 
-          console.log(`[SmiteService] Received session data {sessionId: [${res.data.session_id}] | timestamp: [${res.data.timestamp}] | msg: [${res.data.ret_msg}]`);
-          this.session = res.data as SessionInfo; 
-          console.log(`[SmiteService] Cached session data.  SessionId {${this.session.session_id}} should equal {${res.data.session_id}}`);
-          return res.data.session_id; 
-        },
-        err => console.log(`[SmiteService] Could not retrieve session data. ${err}`)
-      ));
+    if (this.isValidSession()) {
+      console.log(`[SmiteService] Valid sessionId found: ${this.session.session_id}`);
+      return of (this.session.session_id);
     }
-    console.log(`[SmiteService] Valid sessionId found: ${this.session.session_id}`);
-    return of(this.session.session_id);
+    
+    // Generate a new session
+    console.log(`[SmiteService] No valid sessionId found.  Generating new one`)
+    const methodName = 'createsession'
+    const url = this.prefix + 
+                methodName + 
+                'Json/' + 
+                KEYS.devId + 
+                '/' + 
+                this.generateSignature(methodName) + 
+                '/' +
+                this.getTimeStamp();
+
+    console.log(`[SmiteService] Session request to ${url}`)
+
+    return this.http.get<SessionInfo>(url).pipe(map(
+      res => { 
+        console.log(`[SmiteService] Received session data {sessionId: [${res.data.session_id}] | timestamp: [${res.data.timestamp}] | msg: [${res.data.ret_msg}]`);
+        this.session = res.data as SessionInfo; 
+        console.log(`[SmiteService] Cached session data.  SessionId {${this.session.session_id}} should equal {${res.data.session_id}}`);
+        return res.data.session_id; 
+      },
+      err => console.log(`[SmiteService] Could not retrieve session data. ${err}`)
+    ));
   }
 
   /**
@@ -66,7 +71,6 @@ export class SmiteService {
    */
   buildUrl(methodName: string): Observable<string> {
     console.log(`[SmiteService] Building URL with methodname: [${methodName}]`)
-    //const urlSubject = new ReplaySubject<string>();
     return this.getSession().pipe(
       map(sessionId => {
         console.log(`[SmiteService] returning sessionId: [${sessionId}]`)
@@ -97,14 +101,13 @@ export class SmiteService {
   private isValidSession(): boolean {
     if (this.session.session_id) {
       const currentTimeStamp = moment().utc();
-      const sessionTimeStamp = moment(this.session.timestamp).utc().subtract(moment.duration(4, 'hours'));
+      const sessionTimeStamp = moment(this.session.timestamp).utc().subtract(moment.duration(4, 'hours'));  //Smite API doesn't use UTC.  sadface
       console.log(`[ISVALIDSESSION] Current: ${currentTimeStamp} | Session: ${sessionTimeStamp}`)
       const elapsedTime = currentTimeStamp.diff(sessionTimeStamp, 'minutes');
       console.log(`[SmiteService] Elapsed session time: {${elapsedTime}}`)
 
       return elapsedTime < 15;
     }
-    console.log('THIS SHIT AINT BEING SAVED CHIEF')
     return false;
   }
 }

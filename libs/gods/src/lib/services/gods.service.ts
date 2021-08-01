@@ -11,7 +11,7 @@ export class GodsService {
   constructor(private http: HttpClient) { }
 
   getGods(): Observable<GodsEntity[]> {
-    return this.http.get<GodsEntity[]>('/api/gods?languageCode=1');
+    return this.http.get<GodsEntity[]>('/api/gods');
   }
 
   ping() {

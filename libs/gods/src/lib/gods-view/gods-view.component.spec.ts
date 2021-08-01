@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { GodsFacade } from '../+state/gods.facade';
 
 import { GodsViewComponent } from './gods-view.component';
 
@@ -8,7 +10,8 @@ describe('GodsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GodsViewComponent ]
+      declarations: [ GodsViewComponent ],
+      providers: [GodsFacade, Store]
     })
     .compileComponents();
   });

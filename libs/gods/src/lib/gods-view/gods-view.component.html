@@ -2,6 +2,6 @@
 <div class="god-grid">
   <div *ngFor="let god of gods$ | async" class="god-card">
     <img [src]="god.godIcon_URL" class="god-icon">
-    <div>{{god.Name}}</div>
+    <div>{{god.name}}</div>
   </div>
 </div>

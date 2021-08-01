@@ -19,17 +19,7 @@ describe('SmiteApiController', () => {
     smiteApiController = app.get<SmiteApiController>(SmiteApiController);
     smiteApiService = app.get<SmiteApiService>(SmiteApiService);
   });
-
-  describe('when hitting the getGods endpoint', () => {
-    it('should return god data from service', (done) => {
-      jest.spyOn(smiteApiService, 'getGods').mockReturnValue(of([{god: 'Anhur'}]));
-      smiteApiController.getGods('1').subscribe(res => {
-        expect(res).toEqual([{god: 'Anhur'}]);
-        done();
-      })
-    });
-  });
-
+  
   describe('when hitting the test session endpoint', () => {
     it('should return info about session', (done) => {
       jest.spyOn(smiteApiService, 'testSession').mockReturnValue(of('Success'));

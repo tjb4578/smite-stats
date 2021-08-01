@@ -12,11 +12,12 @@ export class GodsEffects {
   loadGods$ = createEffect(() =>
     this.actions$.pipe(
       ofType(GodsActions.loadGods),
-      mergeMap(() => this.godsService.getGods()
-      .pipe(
-        map((gods: GodsEntity[]) => GodsActions.loadGodsSuccess({gods})),
-        catchError(() => of(GodsActions.loadGodsFailure))
-      ))
+      mergeMap(() =>
+        this.godsService.getGods().pipe(
+          map((gods: GodsEntity[]) => GodsActions.loadGodsSuccess({ gods })),
+          catchError(() => of(GodsActions.loadGodsFailure))
+        )
+      )
     )
   );
 
@@ -36,5 +37,8 @@ export class GodsEffects {
   //   )
   // );
 
-  constructor(private readonly actions$: Actions, private readonly godsService: GodsService) {}
+  constructor(
+    private readonly actions$: Actions,
+    private readonly godsService: GodsService
+  ) {}
 }
